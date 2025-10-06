@@ -6,7 +6,7 @@ import time
 import yfinance as yf
 
 app = FastAPI()
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://fanato-ai-server.sit.kmutt.ac.th:11434/api/generate"
 
 # ===========================
 # 🧠 SYSTEM PROMPT (ทุกโหมด)
