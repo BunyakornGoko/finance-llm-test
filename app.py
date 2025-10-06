@@ -4,9 +4,11 @@ import requests
 import json
 import time
 import yfinance as yf
+import os
 
 app = FastAPI()
-OLLAMA_URL = "http://fanato-ai-server.sit.kmutt.ac.th:11434/api/generate"
+# Prefer Docker internal service; allow override via env
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/api/generate")
 
 # ===========================
 # 🧠 SYSTEM PROMPT (ทุกโหมด)
@@ -109,3 +111,12 @@ async def get_stock(symbol: str):
         }
     except Exception as e:
         return JSONResponse({"error": str(e)}, status_code=500)
+
+
+# Lightweight health check to confirm service and upstream URL
+@app.get("/health")
+async def health():
+    return {
+        "status": "ok",
+        "ollama_url": OLLAMA_URL,
+    }
