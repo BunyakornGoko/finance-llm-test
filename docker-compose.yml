@@ -12,6 +12,22 @@ services:
       - OLLAMA_KEEP_ALIVE=1h
     volumes:
       - ollama_data:/root/.ollama
+  api:
+    image: python:3.9-slim
+    container_name: fastapi-api
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: bash -c "pip install --no-cache-dir -r requirements.txt && uvicorn api:app --host 0.0.0.0 --port 8001"
+    environment:
+      - USE_TGI=false
+      - USE_VLLM=false
+      - MODEL_NAME=AdaptLLM/finance-chat
+    ports:
+      - "8001:8001"
+    depends_on:
+      - ollama
 
 volumes:
   ollama_data:
