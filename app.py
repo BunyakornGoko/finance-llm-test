@@ -8,7 +8,7 @@ import os
 
 app = FastAPI()
 # Prefer Docker internal service; allow override via env
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/api/generate")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://fanato-ai-server.sit.kmutt.ac.th:11434/api/generate")
 
 # ===========================
 # 🧠 SYSTEM PROMPT (ทุกโหมด)
