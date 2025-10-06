@@ -20,10 +20,6 @@ services:
     volumes:
       - ./:/app
     command: bash -c "pip install --no-cache-dir -r requirements.txt && uvicorn api:app --host 0.0.0.0 --port 8001"
-    environment:
-      - USE_TGI=false
-      - USE_VLLM=false
-      - MODEL_NAME=AdaptLLM/finance-chat
     ports:
       - "8001:8001"
     depends_on:
