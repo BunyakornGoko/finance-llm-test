@@ -20,8 +20,6 @@ services:
     volumes:
       - ./:/app
     command: bash -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 8001"
-    environment:
-      - OLLAMA_URL=http://fanato-ai-server.sit.kmutt.ac.th:11434/api/generate
     ports:
       - "8001:8001"
     depends_on:
